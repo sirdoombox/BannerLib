@@ -8,7 +8,7 @@ namespace BannerLib.Input
 {
     public class HotKeyCategoryContainer : GameKeyContext
     {
-        public HotKeyCategoryContainer(string categoryId, int gameKeysCount, IEnumerable<HotKeys.HotKeyContainer> keys) 
+        public HotKeyCategoryContainer(string categoryId, int gameKeysCount, IEnumerable<HotKeyContainer> keys) 
             : base(categoryId, gameKeysCount)
         {
             var keyName = Module.CurrentModule.GlobalTextManager.AddGameText("str_key_name");
