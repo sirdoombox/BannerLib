@@ -11,7 +11,6 @@
         <e p="HotKeyCategoryContainer.cs" t="Include" />
         <e p="HotKeys.cs" t="Include" />
         <e p="InputSubModule.cs" t="Include" />
-        <e p="ModuleLoader.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />

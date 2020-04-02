@@ -205,7 +205,6 @@
     <Compile Include="HotKeyCategoryContainer.cs" />
     <Compile Include="HotKeys.cs" />
     <Compile Include="InputSubModule.cs" />
-    <Compile Include="ModuleLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
