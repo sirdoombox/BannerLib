@@ -1,0 +1,7 @@
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Misc\bin\Debug\BannerLib.Misc.dll
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Misc\bin\Debug\BannerLib.Misc.pdb
+G:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Misc.dll
+G:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Misc.pdb
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Misc\obj\Debug\BannerLib.Misc.csprojAssemblyReference.cache
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Misc\obj\Debug\BannerLib.Misc.dll
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Misc\obj\Debug\BannerLib.Misc.pdb

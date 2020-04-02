@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Aaron\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Aaron\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_CompanionFinder.2053665795.00" t="ExcludeRecursive" />
+    <e p="G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\CompanionFinder\bin\Win64_Shipping_Client" t="ExcludeRecursive" />
+    <e p="S:\Projects\Bannerlord Mods\CompanionFinder" t="IncludeFlat">
+      <e p="CompanionFinder" t="IncludeRecursive">
+        <e p="CampaignHook.cs" t="Include" />
+        <e p="CompanionFinder.csproj" t="IncludeRecursive" />
+        <e p="CompanionFinderKeyCategory.cs" t="Include" />
+        <e p="InquiryBuilder.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="CompanionFinder.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

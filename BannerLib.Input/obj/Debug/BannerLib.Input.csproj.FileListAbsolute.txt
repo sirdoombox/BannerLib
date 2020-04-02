@@ -1,0 +1,5 @@
+G:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Input.dll
+G:\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Input.pdb
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Input\obj\Debug\BannerLib.Input.csprojAssemblyReference.cache
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Input\obj\Debug\BannerLib.Input.dll
+S:\Projects\Bannerlord Mods\BannerLib\BannerLib.Input\obj\Debug\BannerLib.Input.pdb
