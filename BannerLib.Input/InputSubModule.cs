@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
+#pragma warning disable 1591
 
 namespace BannerLib.Input
 {

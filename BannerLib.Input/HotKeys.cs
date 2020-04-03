@@ -7,6 +7,9 @@ using TaleWorlds.MountAndBlade;
 
 namespace BannerLib.Input
 {
+    /// <summary>
+    /// Describes a single HotKey group to which you can add individual HotKeys before building.
+    /// </summary>
     public class HotKeys
     {
         private static readonly IReadOnlyDictionary<HotKeyCategory, string> Categories = 

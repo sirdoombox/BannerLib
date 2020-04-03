@@ -3,6 +3,9 @@ using TaleWorlds.InputSystem;
 
 namespace BannerLib.Input
 {
+    /// <summary>
+    /// The HotKey class that is used largely internally with some publicly exposed methods for functionality.
+    /// </summary>
     public class HotKey
     {
         internal int ID { get; }
