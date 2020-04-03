@@ -29,7 +29,7 @@
 [Oo]bj/
 _UpgradeReport_Files/
 [Pp]ackages/
-
+paths.csproj
 Thumbs.db
 Desktop.ini
 .DS_Store
