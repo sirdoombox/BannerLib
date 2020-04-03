@@ -9,7 +9,7 @@ namespace BannerLib.Input
 {
     public class HotKeys
     {
-        private static readonly IReadOnlyDictionary<HotKeyCategory, string> m_categories = 
+        private static readonly IReadOnlyDictionary<HotKeyCategory, string> Categories = 
             new Dictionary<HotKeyCategory, string>
             {
                 {HotKeyCategory.Action, nameof(GameKeyMainCategories.ActionCategory)},
@@ -29,6 +29,13 @@ namespace BannerLib.Input
             m_currentId = startId;
         }
         
+        /// <summary>
+        /// Create a new HotKey group for your mod.
+        /// </summary>
+        /// <param name="modName">The name of your mod.</param>
+        /// <param name="throwExceptionOnInvalidCategoryName">If a mod with the same name has already registered hotkeys, throw an exception otherwise return null.</param>
+        /// <returns>A HotKeys object for you to start adding new HotKeys to.</returns>
+        /// <exception cref="ArgumentException">Thrown if throwExceptionOnInvalidCategoryName is set to true.</exception>
         public static HotKeys Create(string modName, bool throwExceptionOnInvalidCategoryName = true)
         {
             var doesModAlreadyHaveRegisteredKeys = HotKeyManager.GetAllCategories()
@@ -53,7 +60,17 @@ namespace BannerLib.Input
             if (idMax == 69) idMax++;
             return new HotKeys(idMax,modName);
         }
-
+        
+        /// <summary>
+        /// Add a new hotkey to the group.
+        /// </summary>
+        /// <param name="hotKeyName">The internal name of the hotkey, ideally a CamelCase string with no spaces.</param>
+        /// <param name="defaultKey">The default key for this hotkey, will be overwritten by the user if they change it in the options.</param>
+        /// <param name="category">The category in the options menu this key will appear under.</param>
+        /// <param name="hotkeyDisplayName">Optional: The display name that will be shown in the options menu.</param>
+        /// <param name="description">Optional: The description of the hotkey that will be shown in the options menu.</param>
+        /// <returns>The created but not yet fully built hotkey.</returns>
+        /// <exception cref="ArgumentException">Thrown when a hotkey with the same name already exists.</exception>
         public HotKey Add(string hotKeyName, 
             InputKey defaultKey,
             HotKeyCategory category,
@@ -65,7 +82,7 @@ namespace BannerLib.Input
             var hotkey = new HotKey(
                 m_currentId,
                 hotKeyName,
-                m_categories[category],
+                Categories[category],
                 defaultKey,
                 string.IsNullOrWhiteSpace(hotkeyDisplayName) ? hotKeyName : hotkeyDisplayName,
                 description);
@@ -73,7 +90,11 @@ namespace BannerLib.Input
             m_currentId++;
             return hotkey;
         }
-
+        
+        /// <summary>
+        /// Builds up the hotkeys and adds them to Bannerlord, loading saved user data if it's available.
+        /// </summary>
+        /// <returns>The fully built hotkeys.</returns>
         public IReadOnlyList<HotKey> Build()
         {
             var hotKeyCategoryContainer = new HotKeyCategoryContainer(m_subModName, m_currentId + 1, m_hotKeys);

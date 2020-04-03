@@ -22,14 +22,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x64</PlatformTarget>
+    <DocumentationFile>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Input.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <DocumentationFile>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\BannerLib.Input.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
