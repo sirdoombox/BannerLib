@@ -4,5 +4,5 @@ It's still early days so I'm just adding things as I go.
 
 ## NameSpaces
 
-- [BannerLib.Input](../BannerLib.Input/) - Simplifies, improves and prevents mod collisions in regards to player input.
+- [BannerLib.Input](BannerLib.Input) - Simplifies, improves and prevents mod collisions in regards to player input.
 
