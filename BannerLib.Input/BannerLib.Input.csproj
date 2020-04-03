@@ -203,7 +203,7 @@
   <ItemGroup>
     <Compile Include="HotKeyCategory.cs" />
     <Compile Include="HotKeyCategoryContainer.cs" />
-    <Compile Include="HotkeyContainer.cs" />
+    <Compile Include="HotKey.cs" />
     <Compile Include="HotKeys.cs" />
     <Compile Include="InputSubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
