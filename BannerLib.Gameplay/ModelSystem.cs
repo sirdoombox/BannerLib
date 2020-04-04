@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
+﻿using System.Collections.Generic;
 using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay
 {
-    public class ModelSystem
+    public static class ModelSystem
     {
-        public void ReplaceModel<TRemove>(IGameStarter gameStarter, GameModel toAdd)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameStarter"></param>
+        /// <param name="toAdd"></param>
+        /// <typeparam name="TRemove"></typeparam>
+        public static void ReplaceModel<TRemove>(IGameStarter gameStarter, GameModel toAdd)
         {
-            Utils.Remove<GameModel, TRemove>(gameStarter.Models as List<GameModel>);
+            ((List<GameModel>) gameStarter.Models).RemoveAll(item => item is TRemove);
             gameStarter.AddModel(toAdd);
         }
     }

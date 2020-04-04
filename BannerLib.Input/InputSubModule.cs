@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using TaleWorlds.CampaignSystem.ViewModelCollection;
-using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
 #pragma warning disable 1591
