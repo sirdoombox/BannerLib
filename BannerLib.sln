@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.Misc", "BannerLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.Gameplay", "BannerLib.Gameplay\BannerLib.Gameplay.csproj", "{A18A0768-4BDE-4B5C-9FFA-F1FCC292F69A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.ReleasePackager", ".tools\BannerLib.ReleasePackager\BannerLib.ReleasePackager.csproj", "{76ADCE1B-D7A5-4CCB-BA2C-F11F012A1740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.Core", "BannerLib.Core\BannerLib.Core.csproj", "{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,12 @@ Global
 		{A18A0768-4BDE-4B5C-9FFA-F1FCC292F69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A18A0768-4BDE-4B5C-9FFA-F1FCC292F69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A18A0768-4BDE-4B5C-9FFA-F1FCC292F69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76ADCE1B-D7A5-4CCB-BA2C-F11F012A1740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76ADCE1B-D7A5-4CCB-BA2C-F11F012A1740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
