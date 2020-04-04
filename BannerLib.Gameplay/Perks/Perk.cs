@@ -1,26 +1,31 @@
+using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Perks
 {
     public class Perk
     {
-        internal string Name { get; }
-        internal string Description { get; }
-        internal float PrimaryBonus { get; private set; }
-        internal SkillEffect.PerkRole PrimaryRole { get; private set; }
-        internal float SecondaryBonus { get; private set; }
-        internal SkillEffect.PerkRole SecondaryRole { get; private set; }
-        internal SkillEffect.EffectIncrementType IncrementType { get; private set; }
+        public string Name { get; }
+        public string Description { get; }
+        public float PrimaryBonus { get; private set; }
+        public float SecondaryBonus { get; private set; }
+        public SkillEffect.PerkRole PrimaryRole { get; private set; }
+        public SkillEffect.PerkRole SecondaryRole { get; private set; }
+        public SkillEffect.EffectIncrementType EffectType { get; private set; }
+        
+        internal PerkObject PerkObject { get; }
 
-        internal Perk(string name, string description)
+        internal Perk(string name, string description, PerkObject perkObject)
         {
             Name = name;
             Description = description;
-            PrimaryBonus = 0;
-            PrimaryRole = SkillEffect.PerkRole.None;
-            SecondaryRole = SkillEffect.PerkRole.None;
-            SecondaryBonus = 0;
-            IncrementType = SkillEffect.EffectIncrementType.Add;
+            PerkObject = perkObject;
+            PrimaryBonus = perkObject.PrimaryBonus;
+            PrimaryRole = perkObject.PrimaryRole;
+            SecondaryRole = perkObject.SecondaryRole;
+            SecondaryBonus = perkObject.SecondaryBonus;
+            EffectType = perkObject.IncrementType;
         }
 
         public Perk WithPrimaryBonus(float bonus)
@@ -47,16 +52,12 @@ namespace BannerLib.Gameplay.Perks
             return this;
         }
 
-        public Perk WithAddIncrementType()
+        public Perk WithEffectType(SkillEffect.EffectIncrementType effectType)
         {
-            IncrementType = SkillEffect.EffectIncrementType.Add;
+            EffectType = effectType;
             return this;
         }
 
-        public Perk WithAddFactorIncrementType()
-        {
-            IncrementType = SkillEffect.EffectIncrementType.AddFactor;
-            return this;
-        }
+        public static implicit operator PerkObject(Perk perk) => perk.PerkObject;
     }
 }

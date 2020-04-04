@@ -15,6 +15,7 @@ namespace BannerLib.Gameplay.Perks
         private PerkObject m_perkObject;
         private Perk m_alternativePerk;
         private PerkObject m_alternativePerkObject;
+        private bool m_isCreatedFromExisting;
         
         internal PerkBuilder(Game game, string modName, SkillObject skillGroup, int perkLevel)
         {
@@ -29,13 +30,22 @@ namespace BannerLib.Gameplay.Perks
             return new PerkBuilder(game, modName, skillGroup, perkLevel);
         }
 
+        public static PerkBuilder CreateFromExisting(Game game, string modName, PerkObject existingPerk)
+        {
+            var newPerkBuilder = new PerkBuilder(game, modName, existingPerk.Skill, (int)existingPerk.RequiredSkillValue);
+            newPerkBuilder.m_perk = new Perk(existingPerk.Name.ToString(), existingPerk.Description.ToString(), existingPerk);
+            newPerkBuilder.m_perkObject = existingPerk;
+            newPerkBuilder.m_isCreatedFromExisting = true;
+            return newPerkBuilder;
+        }
+
         public Perk CreatePerk(string perkId, string displayName, string description, bool throwExceptionOnPerkExists = true)
         {
             if(!(m_perk is null)) 
                 throw new InvalidOperationException($"An alternative perk \"{m_perk.Name}\" exists in this builder.");
             m_perkObject = CreatePerkObject(perkId, throwExceptionOnPerkExists);
             if (m_perkObject is null) return null;
-            m_perk = new Perk(displayName, description);
+            m_perk = new Perk(displayName, description, m_perkObject);
             return m_perk;
         }
 
@@ -45,17 +55,18 @@ namespace BannerLib.Gameplay.Perks
                 throw new InvalidOperationException($"An alternative perk \"{m_alternativePerk.Name}\" exists in this builder.");
             m_alternativePerkObject = CreatePerkObject(perkId, throwExceptionOnPerkExists);
             if (m_alternativePerkObject is null) return null;
-            m_alternativePerk = new Perk(displayName, description);
+            m_alternativePerk = new Perk(displayName, description, m_alternativePerkObject);
             return m_alternativePerk;
         }
         
-        public (PerkObject main, PerkObject alternative) Build()
+        public (Perk main, Perk alternative) Build()
         {
-            InitializePerk(m_perk, m_perkObject, m_alternativePerkObject);
+            if(!m_isCreatedFromExisting)
+                InitializePerk(m_perk, m_perkObject, m_alternativePerkObject);
             if(!(m_alternativePerk is null))
                 InitializePerk(m_alternativePerk, m_alternativePerkObject, m_perkObject);
             UpdatePerks();
-            return (m_perkObject, m_alternativePerkObject);
+            return (m_perk, m_alternativePerk);
         }
         
         private static void UpdatePerks()
@@ -81,7 +92,16 @@ namespace BannerLib.Gameplay.Perks
 
         private void InitializePerk(Perk perk, PerkObject perkObject, PerkObject alternatePerk)
         {
-            perkObject.Initialize(perk.Name, perk.Description, m_skillGroup, m_perkLevel, alternatePerk, perk.PrimaryRole, perk.PrimaryBonus, perk.SecondaryRole, perk.SecondaryBonus, perk.IncrementType );
+            perkObject.Initialize(perk.Name, 
+                perk.Description, 
+                m_skillGroup, 
+                m_perkLevel, 
+                alternatePerk, 
+                perk.PrimaryRole, 
+                perk.PrimaryBonus,
+                perk.SecondaryRole, 
+                perk.SecondaryBonus,
+                perk.EffectType);
         }
     }
 }
