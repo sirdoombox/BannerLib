@@ -31,7 +31,7 @@ namespace BannerLib.Input
             foreach (var hotkey in m_hotKeys)
             {
                 if (!hotkey.IsEnabled) continue;
-                if (!hotkey.Predicate()) continue;
+                if (!(hotkey.Predicate is null) && !hotkey.Predicate()) continue;
                 if (hotkey.GameKey.PrimaryKey.InputKey.IsDown())
                     hotkey.IsDown?.Invoke();
                 if (hotkey.GameKey.PrimaryKey.InputKey.IsPressed())
