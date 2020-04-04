@@ -23,7 +23,7 @@ namespace BannerLib.Gameplay
             PerkObject customPerk = game.ObjectManager.GetObject<PerkObject>(stringId);
             if (customPerk == null)
             {
-                customPerk = new PerkObject("Foraging");
+                customPerk = new PerkObject(stringId);
                 game.ObjectManager.RegisterPresumedObject(customPerk);
             }
 
