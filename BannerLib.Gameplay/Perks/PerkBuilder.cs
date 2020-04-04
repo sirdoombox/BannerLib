@@ -11,9 +11,9 @@ namespace BannerLib.Gameplay.Perks
         private readonly SkillObject m_skillGroup;
         private readonly int m_perkLevel;
 
-        private Perk m_perk;
+        private PerkConstructor m_perk;
         private PerkObject m_perkObject;
-        private Perk m_alternativePerk;
+        private PerkConstructor m_alternativePerk;
         private PerkObject m_alternativePerkObject;
         private bool m_isCreatedFromExisting;
         
@@ -33,29 +33,29 @@ namespace BannerLib.Gameplay.Perks
         public static PerkBuilder CreateFromExisting(Game game, string modName, PerkObject existingPerk)
         {
             var newPerkBuilder = new PerkBuilder(game, modName, existingPerk.Skill, (int)existingPerk.RequiredSkillValue);
-            newPerkBuilder.m_perk = new Perk(existingPerk.Name.ToString(), existingPerk.Description.ToString(), existingPerk);
+            newPerkBuilder.m_perk = new PerkConstructor(existingPerk.Name.ToString(), existingPerk.Description.ToString(), existingPerk);
             newPerkBuilder.m_perkObject = existingPerk;
             newPerkBuilder.m_isCreatedFromExisting = true;
             return newPerkBuilder;
         }
 
-        public Perk CreatePerk(string perkId, string displayName, string description, bool throwExceptionOnPerkExists = true)
+        public PerkConstructor CreatePerk(string perkId, string displayName, string description, bool throwExceptionOnPerkExists = true)
         {
             if(!(m_perk is null)) 
                 throw new InvalidOperationException($"An alternative perk \"{m_perk.Name}\" exists in this builder.");
             m_perkObject = CreatePerkObject(perkId, throwExceptionOnPerkExists);
             if (m_perkObject is null) return null;
-            m_perk = new Perk(displayName, description, m_perkObject);
+            m_perk = new PerkConstructor(displayName, description, m_perkObject);
             return m_perk;
         }
 
-        public Perk CreateAlternativePerk(string perkId, string displayName, string description, bool throwExceptionOnPerkExists = true)
+        public PerkConstructor CreateAlternativePerk(string perkId, string displayName, string description, bool throwExceptionOnPerkExists = true)
         {
             if(!(m_alternativePerk is null)) 
                 throw new InvalidOperationException($"An alternative perk \"{m_alternativePerk.Name}\" exists in this builder.");
             m_alternativePerkObject = CreatePerkObject(perkId, throwExceptionOnPerkExists);
             if (m_alternativePerkObject is null) return null;
-            m_alternativePerk = new Perk(displayName, description, m_alternativePerkObject);
+            m_alternativePerk = new PerkConstructor(displayName, description, m_alternativePerkObject);
             return m_alternativePerk;
         }
         
