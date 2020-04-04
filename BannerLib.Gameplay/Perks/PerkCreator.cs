@@ -54,11 +54,7 @@ namespace BannerLib.Gameplay.Perks
             var perkObject = m_game.ObjectManager.GetObject<PerkObject>(perkId);
             if (!(perkObject is null))
             {
-                // This seems to no longer work for literally no reason.
-                // IMPORTANT: For some reason the game is now completely incapable of loading up perks properly
-                // IMPORTANT: Beats me.
                 perkBase.m_perkObject = perkObject;
-                perkBase.InitWithPerkObject();
                 perkBase.m_perkAlreadyExisted = true;
             }
             else
@@ -70,8 +66,7 @@ namespace BannerLib.Gameplay.Perks
 
         private void InitializePerk(PerkBase perk, PerkBase alternate = null)
         {
-            if (!perk.m_perkAlreadyExisted)
-                perk.m_perkObject.Initialize(perk.Name,
+            perk.m_perkObject.Initialize(perk.Name,
                     perk.Description,
                     perk.Skill,
                     perk.PerkSkillRequirement,
@@ -81,8 +76,7 @@ namespace BannerLib.Gameplay.Perks
                     perk.SecondaryRole,
                     perk.SecondaryBonus,
                     perk.EffectType);
-            if (alternate != null && !alternate.m_perkAlreadyExisted)
-                alternate.m_perkObject.Initialize(alternate.Name,
+            alternate?.m_perkObject.Initialize(alternate.Name,
                     alternate.Description,
                     alternate.Skill,
                     alternate.PerkSkillRequirement,
