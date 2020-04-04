@@ -5,7 +5,7 @@ using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Perks
 {
-    public abstract class PerkBase
+    public class PerkBase
     {
         /// <summary>
         /// Display name of the perk.
@@ -42,9 +42,15 @@ namespace BannerLib.Gameplay.Perks
         /// </summary>
         public SkillEffect.EffectIncrementType EffectType { get; protected set; }
         
+        /// <summary>
+        /// The skill group this perk belongs to.
+        /// </summary>
         public SkillObject Skill { get; protected set; }
         
-        public int PerkSkillRequirement { get; set; }
+        /// <summary>
+        /// The skill level requirement for this perk.
+        /// </summary>
+        public int PerkSkillRequirement { get; protected set; }
 
         /// <summary>
         /// Converts a <see cref="Perk"/> object to a <see cref="PerkObject"/> implicitly so it can be used in all the same places.
@@ -54,8 +60,8 @@ namespace BannerLib.Gameplay.Perks
         public static implicit operator PerkObject(PerkBase perk) => perk.m_perkObject;
         
         internal PerkObject m_perkObject;
-        internal bool m_perkAlreadyExisted = false;
-        
+        internal bool m_perkFromExisting = false;
+
         internal void InitWithPerkObject()
         {
             if (m_perkObject.Name == null) return;
