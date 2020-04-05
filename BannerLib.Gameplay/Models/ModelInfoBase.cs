@@ -1,5 +1,3 @@
-using System;
-
 namespace BannerLib.Gameplay.Models
 {
     public abstract class ModelInfoBase
