@@ -1,8 +1,3 @@
-using System;
-using System.Linq;
-using BannerLib.Gameplay.Perks;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 #pragma warning disable 1591
 

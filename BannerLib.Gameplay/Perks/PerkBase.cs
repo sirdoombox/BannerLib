@@ -5,6 +5,9 @@ using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Perks
 {
+    /// <summary>
+    /// The base type that all perks should derive from.
+    /// </summary>
     public class PerkBase
     {
         /// <summary>
@@ -53,7 +56,7 @@ namespace BannerLib.Gameplay.Perks
         public int PerkSkillRequirement { get; protected set; }
 
         /// <summary>
-        /// Converts a <see cref="Perk"/> object to a <see cref="PerkObject"/> implicitly so it can be used in all the same places.
+        /// Converts a <see cref="PerkBase"/> object to a <see cref="PerkObject"/> implicitly so it can be used in all the same places.
         /// </summary>
         /// <param name="perk">Perk to convert.</param>
         /// <returns>Internally stored PerkObject.</returns>
@@ -75,7 +78,10 @@ namespace BannerLib.Gameplay.Perks
             Skill = m_perkObject.Skill;
             PerkSkillRequirement = (int)Math.Round(m_perkObject.RequiredSkillValue);
         }
-
+        
+        /// <summary>
+        /// This constructor is used purely to set up the object with defaults.
+        /// </summary>
         protected internal PerkBase()
         {
             PrimaryBonus = default;

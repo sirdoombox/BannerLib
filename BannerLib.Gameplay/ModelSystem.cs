@@ -3,6 +3,9 @@ using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ModelSystem
     {
         /// <summary>
