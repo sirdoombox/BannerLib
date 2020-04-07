@@ -205,10 +205,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameplaySubModule.cs" />
-    <Compile Include="Models\AddedModelInfo.cs" />
-    <Compile Include="Models\ModelInfoBase.cs" />
-    <Compile Include="Models\ModelManager.cs" />
-    <Compile Include="Models\ReplacedModelInfo.cs" />
+    <Compile Include="Models\GameModelLedgerEntry.cs" />
+    <Compile Include="Models\GameModels.cs" />
     <Compile Include="Perks\PerkBase.cs" />
     <Compile Include="Perks\PerkExtensions.cs" />
     <Compile Include="Perks\PerkCreator.cs" />
