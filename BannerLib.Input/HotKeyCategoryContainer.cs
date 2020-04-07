@@ -9,7 +9,7 @@ namespace BannerLib.Input
 {
     public class HotKeyCategoryContainer : GameKeyContext
     {
-        public HotKeyCategoryContainer(string categoryId, int gameKeysCount, IEnumerable<HotKey> keys) 
+        public HotKeyCategoryContainer(string categoryId, int gameKeysCount, IEnumerable<HotKeyBase> keys) 
             : base(categoryId, gameKeysCount)
         {
             var keyName = Module.CurrentModule.GlobalTextManager.AddGameText("str_key_name");
@@ -17,9 +17,9 @@ namespace BannerLib.Input
             var variationString = $"{categoryId}_";
             foreach (var key in keys)
             {
-                keyName.AddVariationWithId(variationString+key.ID, new TextObject(key.HotKeyDisplayName), new List<GameTextManager.ChoiceTag>());
-                keyDesc.AddVariationWithId(variationString+key.ID, new TextObject(key.HotKeyDescription), new List<GameTextManager.ChoiceTag>());
-                RegisterGameKey(new GameKey(key.ID, key.HotKeyName, categoryId, key.DefaultKey, key.HotKeyCategory));
+                keyName.AddVariationWithId(variationString+key.ID, new TextObject(key.DisplayName), new List<GameTextManager.ChoiceTag>());
+                keyDesc.AddVariationWithId(variationString+key.ID, new TextObject(key.Description), new List<GameTextManager.ChoiceTag>());
+                RegisterGameKey(new GameKey(key.ID, key.IdName, categoryId, key.DefaultKey, key.Category));
             }
         }
     }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Models
 {
     /// <summary>
-    /// Allows you to Add/Replace models, whilst handling conflicts with other mods.
-    /// Also allows other mods to replace your models.
+    /// Allows all mods to add/replace GameModels centrally, with records to show what has been replaced.
     /// </summary>
     public class ModelManager
     {
@@ -16,12 +16,19 @@ namespace BannerLib.Gameplay.Models
         private List<GameModel> GameModels => (List<GameModel>) m_gameStarter.Models;
 
         // model ledgers so we can at least try to resolve mod conflicts.
-        private static readonly List<ReplacedModelInfo> s_replacedModelLedger =
-            new List<ReplacedModelInfo>();
-        
-        private static readonly List<AddedModelInfo> s_addedModelLedger =
-            new List<AddedModelInfo>();
+        private static readonly List<ReplacedModelInfo> ReplacedModelLedger = new List<ReplacedModelInfo>();
+        private static readonly List<AddedModelInfo> AddedModelLedger = new List<AddedModelInfo>();
 
+        /// <summary>
+        /// Get a record of all Model replacement operations.
+        /// </summary>
+        public IReadOnlyList<ReplacedModelInfo> ReplacedModels => ReplacedModelLedger;
+        
+        /// <summary>
+        /// Get a record of all Model addition operations.
+        /// </summary>
+        public IReadOnlyList<AddedModelInfo> AddedModels = AddedModelLedger;
+        
         public ModelManager(string modName, IGameStarter gameStarter)
         {
             m_modName = modName;
@@ -29,13 +36,13 @@ namespace BannerLib.Gameplay.Models
         }
 
         /// <summary>
-        /// Check if a GameModel base class has had it's implementation replaced.
+        /// Check if a GameModel derived base class has had it's implementation replaced.
         /// </summary>
         /// <typeparam name="TModelBase">Type to check E.G.: <see cref="TaleWorlds.CampaignSystem.GenericXpModel"/></typeparam>
         /// <returns>A <see cref="ReplacedModelInfo"/> object describing the replacement, or null if no replacement was made.</returns>
         public ReplacedModelInfo IsModelReplaced<TModelBase>() where TModelBase : GameModel
         {
-            return s_replacedModelLedger.FirstOrDefault(x => x.BaseType == typeof(TModelBase));
+            return ReplacedModelLedger.FirstOrDefault(x => x.BaseType == typeof(TModelBase));
         }
         
         /// <summary>
@@ -56,20 +63,20 @@ namespace BannerLib.Gameplay.Models
         /// <typeparam name="TBase"></typeparam>
         public void AddModel<TModel, TBase>(TModel toAdd) where TModel : TBase where TBase : GameModel
         {
-            if (s_addedModelLedger.Any(x => x.AddedType == typeof(TModel)))
+            if (AddedModelLedger.Any(x => x.AddedType == typeof(TModel)))
                 throw new Exception($"Model of type {typeof(TModel).Name} already exists.");
             m_gameStarter.AddModel(toAdd);
-            s_addedModelLedger.Add(new AddedModelInfo(m_modName, typeof(TModel), typeof(TBase)));
+            AddedModelLedger.Add(new AddedModelInfo(m_modName, typeof(TModel), typeof(TBase)));
         }
 
         /// <summary>
         /// Replaces ALL instances of Models that derive from <see cref="TBaseReplace"/>.
         /// This is hugely destructive so expect things to break if you don't know what you're doing.
         /// </summary>
-        /// <param name="toAdd"></param>
+        /// <param name="toReplace"></param>
         /// <typeparam name="TBaseReplace"></typeparam>
         /// <typeparam name="TReplacement"></typeparam>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="Exception"></exception>s
         public void ReplaceAll<TBaseReplace, TReplacement>(TReplacement toReplace) 
             where TBaseReplace : GameModel where TReplacement : GameModel
         {
@@ -80,18 +87,26 @@ namespace BannerLib.Gameplay.Models
             if (!GameModels.Any(x => x is TBaseReplace)) return;
             var models = GameModels.Where(x => x is TBaseReplace);
             GameModels.RemoveAll(x => x is TBaseReplace);
-            s_replacedModelLedger.AddRange(models.Select(x => new ReplacedModelInfo(m_modName, baseType, x.GetType(), addType)));
+            ReplacedModelLedger.AddRange(models.Select(x => new ReplacedModelInfo(m_modName, baseType, x.GetType(), addType)));
             m_gameStarter.AddModel(toReplace);
         }
 
-        /// <summary>
-        /// Reverts a model replacement back to it's previous model.
-        /// </summary>
-        /// <typeparam name="TFor"></typeparam>
-        public void RevertReplacement<TFor>() where TFor : GameModel
+        public void Replace<TReplace, TReplacement>(TReplacement replacement)
+            where TReplace : GameModel where TReplacement : GameModel
         {
-            var replacedModel = s_replacedModelLedger.FirstOrDefault(x => x.ReplacedType == typeof(TFor));
-            if (replacedModel is null) return;
+            var replaceType = typeof(TReplace);
+            var replacementType = typeof(TReplacement);
+            if(replaceType.BaseType is null) 
+                throw new Exception($"{replaceType.Name} must derive from something.");
+            if(replacementType.BaseType is null) 
+                throw new Exception($"{replacementType.Name} must derive from something.");
+            if(!replaceType.BaseType.IsAssignableFrom(replacementType))
+                throw new Exception($"{replaceType.Name} is not derived from {replacementType.BaseType.Name}");
+            if (!GameModels.Any(x => x is TReplace)) return;
+            var model = GameModels.First(x => x is TReplace);
+            GameModels.Remove(model);
+            ReplacedModelLedger.Add(new ReplacedModelInfo(m_modName, replaceType.BaseType, replaceType, replacementType));
+            m_gameStarter.AddModel(replacement);
         }
 
         /// <inheritdoc cref="ReplaceAll{TBase,TAdd}(TAdd)"/>

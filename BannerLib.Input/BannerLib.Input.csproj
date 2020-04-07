@@ -205,10 +205,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HotKeyBase.cs" />
     <Compile Include="HotKeyCategory.cs" />
     <Compile Include="HotKeyCategoryContainer.cs" />
-    <Compile Include="HotKey.cs" />
-    <Compile Include="HotKeys.cs" />
+    <Compile Include="HotKeyManager.cs" />
     <Compile Include="InputSubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

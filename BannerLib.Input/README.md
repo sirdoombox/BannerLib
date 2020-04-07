@@ -7,35 +7,45 @@ The `HotKeyManager` type and associated views and functionality inside of Banner
 ```csharp
 public class MySubModule : MBSubModuleBase
 {
-    private bool m_campaignIsStarted;
-
+    private bool m_campaignStarted;
     protected override void OnSubModuleLoad()
     {
-        // first create a HotKey group for our mod.
-        var hotkeys = HotKeys.Create("MySubModule");
-        // Then add a hotkey to it.
-        var menuKey = hotkeys.Add("ExamplShortCutKey",
-            InputKey.Comma,
-            HotKeyCategory.MenuShortcut,
-            "Example Shortcut",
-            "Displays a message confirming the key works.");
-        // Only fire events for the input if the campaign is currently being played.
-        menuKey.WithPredicate(() => m_campaignIsStarted);
-        // On pressing the button display a message (InquiryBuilder is a part of BannerLib.Misc)
-        menuKey.WithOnPressedAction(() => {
-            InquiryBuilder.Create("You Pressed The Button!").BuildAndPublish(true);
-        });
-        // On releasing the button display another message.
-        menuKey.WithOnReleasedAction(() => {
-            InquiryBuilder.Create("You Released The Button!").BuildAndPublish(true);
-        });
-        // Build the keys up and register them with Bannerlord.
-        hotkeys.Build();
+        // Create a new HotKeyManager for your mod.
+        var hkm = HotKeyManager.Create("MyMod");
+        // Add your HotKeyBase derived class to the manager.
+        // You can add as many hotkeys as you'd like before building them up.
+        // You can also use `hkm.Add(new TestKey(SomeExampleArgument))` if you'd like to have a non-default constructor.
+        var rslt = hkm.Add<TestKey>();
+        // It's not necessary to supply a predicate, it's just a convenience.
+        // You can also manually set IsEnabled to more simply enable/disable a keys functionality.
+        rslt.Predicate = () => m_campaignStarted;
+        // Subscribe to each of the events on the hotkey at any time.
+        rslt.OnReleasedEvent += () =>
+            InformationManager.DisplayMessage(new InformationMessage("Test Key Released!", Colors.Magenta));
+        // Call this to build up all the hotkeys you added.
+        hkm.Build();
     }
 
     protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
     {
+        // An example just to demonstrate functionality.
         if (game.GameType is Campaign) m_campaignIsStarted = true;
+    }
+}
+
+public class TestKey : HotKeyBase
+{
+    public TestKey() : base(nameof(TestKey))
+    {
+        DisplayName = "My Test Key";
+        Description = "This is a test key.";
+        DefaultKey = InputKey.Comma;
+        Category = HotKeyManager.Categories[HotKeyCategory.CampaignMap];
+    }
+    
+    protected override void OnReleased()
+    {
+        // You can also override methods relating to keypresses within the key itself.
     }
 }
 ```
