@@ -102,6 +102,26 @@ namespace BannerLib.Gameplay.Models
         public static void ReplaceAll<TBaseReplace, TReplacement>(this IGameStarter starter)
             where TBaseReplace : GameModel where TReplacement : GameModel, new() =>
             ReplaceAll<TBaseReplace, TReplacement>(starter, new TReplacement());
+
+        /// <summary>
+        /// Decorates an existing model with a given decorator that is produced by the given function
+        /// </summary>
+        /// <typeparam name="TDecoratee"></typeparam>
+        /// <typeparam name="TDecorater"></typeparam>
+        /// <param name="starter"></param>
+        /// <param name="decoraterCtor">Functions which creates the decorator from the given model</param>
+        public static void Decorate<TDecoratee, TDecorater>(this IGameStarter starter, Func<TDecoratee, TDecorater> decoraterCtor)
+            where TDecoratee : GameModel where TDecorater : TDecoratee
+        {
+            var baseType = typeof(TDecoratee);
+            var model = starter.Models
+                .OfType<TDecoratee>()
+                .SingleOrDefault();
+            if (model == null)
+                throw new ArgumentException($"No model or multiple models registered with type '{baseType.Name}'. It must be exactly ONE model with this type to decorate it!");
+            var decorater = decoraterCtor(model);
+            starter.Replace<TDecoratee, TDecorater>(decorater);
+        }
         
         /// <summary>
         /// Adds a GameModel to the GameStarter
