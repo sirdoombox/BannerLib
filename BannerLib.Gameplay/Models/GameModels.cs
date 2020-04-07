@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Models
@@ -30,8 +32,8 @@ namespace BannerLib.Gameplay.Models
         /// Check if a model implementation exists for a given base type.
         /// </summary>
         /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
-        /// <typeparam name="TModelBase"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TModelBase"><see cref="GameModel"/> Derived base class to check for.</typeparam>
+        /// <returns>True if a model that derives from the given type exists in the current models.</returns>
         public static bool ModelExistsFor<TModelBase>(this IGameStarter starter) where TModelBase : GameModel
         {
             return starter.Models.Any(x => x is TModelBase);
@@ -41,8 +43,8 @@ namespace BannerLib.Gameplay.Models
         /// Replace a specific GameModel implementation with another.
         /// </summary>
         /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
-        /// <param name="replacement"></param>
-        /// <typeparam name="TReplace"></typeparam>
+        /// <param name="replacement">Specific instance of a <see cref="GameModel"/> derived type to use as the replacement.</param>
+        /// <typeparam name="TReplace"><see cref="GameModel"/> derived type to use as the replace.</typeparam>
         /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void Replace<TReplace,TReplacement>(this IGameStarter starter, TReplacement replacement) 
             where TReplace : GameModel where TReplacement : GameModel
@@ -66,7 +68,7 @@ namespace BannerLib.Gameplay.Models
         /// Replace a specific GameModel implementation with another.
         /// </summary>
         /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
-        /// <typeparam name="TReplace"></typeparam>
+        /// <typeparam name="TReplace"><see cref="GameModel"/> Derived base class to replace E.G.: <seealso cref="DefaultGenericXpModel"/></typeparam>
         /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void Replace<TReplace, TReplacement>(this IGameStarter starter)
             where TReplace : GameModel where TReplacement : GameModel, new() =>
@@ -77,7 +79,7 @@ namespace BannerLib.Gameplay.Models
         /// </summary>
         /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
         /// <param name="replacement">Instance of a <see cref="GameModel"/> derived type to use as the replacement.</param>
-        /// <typeparam name="TBaseReplace"></typeparam>
+        /// <typeparam name="TBaseReplace"><see cref="GameModel"/> Derived base class to replace E.G.: <seealso cref="GenericXpModel"/></typeparam>
         /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void ReplaceAll<TBaseReplace, TReplacement>(this IGameStarter starter, TReplacement replacement)
             where TBaseReplace : GameModel where TReplacement : GameModel
@@ -106,9 +108,9 @@ namespace BannerLib.Gameplay.Models
         /// <summary>
         /// Decorates an existing model with a given decorator that is produced by the given function
         /// </summary>
-        /// <typeparam name="TDecoratee"></typeparam>
-        /// <typeparam name="TDecorater"></typeparam>
-        /// <param name="starter"></param>
+        /// <typeparam name="TDecoratee"><see cref="GameModel"/> derived type to decorate.</typeparam>
+        /// <typeparam name="TDecorater"><see cref="GameModel"/> derived type that will decorate it.</typeparam>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
         /// <param name="decoraterCtor">Functions which creates the decorator from the given model</param>
         public static void Decorate<TDecoratee, TDecorater>(this IGameStarter starter, Func<TDecoratee, TDecorater> decoraterCtor)
             where TDecoratee : GameModel where TDecorater : TDecoratee
@@ -121,6 +123,7 @@ namespace BannerLib.Gameplay.Models
                 throw new ArgumentException($"No model or multiple models registered with type '{baseType.Name}'. It must be exactly ONE model with this type to decorate it!");
             var decorater = decoraterCtor(model);
             starter.Replace<TDecoratee, TDecorater>(decorater);
+            m_ledger.Add(new GameModelLedgerEntry(typeof(TDecoratee), typeof(TDecorater)));
         }
         
         /// <summary>
