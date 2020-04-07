@@ -5,6 +5,9 @@ using TaleWorlds.Core;
 
 namespace BannerLib.Gameplay.Models
 {
+    /// <summary>
+    /// A class designed to make adding/replacing <see cref="GameModel"/>s a less cumbersome and dangerous task.
+    /// </summary>
     public static class GameModels
     {
         /// <summary>
@@ -26,7 +29,7 @@ namespace BannerLib.Gameplay.Models
         /// <summary>
         /// Check if a model implementation exists for a given base type.
         /// </summary>
-        /// <param name="starter"></param>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
         /// <typeparam name="TModelBase"></typeparam>
         /// <returns></returns>
         public static bool ModelExistsFor<TModelBase>(this IGameStarter starter) where TModelBase : GameModel
@@ -35,12 +38,12 @@ namespace BannerLib.Gameplay.Models
         }
         
         /// <summary>
-        /// 
+        /// Replace a specific GameModel implementation with another.
         /// </summary>
-        /// <param name="starter"></param>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
         /// <param name="replacement"></param>
         /// <typeparam name="TReplace"></typeparam>
-        /// <typeparam name="TReplacement"></typeparam>
+        /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void Replace<TReplace,TReplacement>(this IGameStarter starter, TReplacement replacement) 
             where TReplace : GameModel where TReplacement : GameModel
         {
@@ -60,22 +63,22 @@ namespace BannerLib.Gameplay.Models
         }
         
         /// <summary>
-        /// 
+        /// Replace a specific GameModel implementation with another.
         /// </summary>
-        /// <param name="starter"></param>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
         /// <typeparam name="TReplace"></typeparam>
-        /// <typeparam name="TReplacement"></typeparam>
+        /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void Replace<TReplace, TReplacement>(this IGameStarter starter)
             where TReplace : GameModel where TReplacement : GameModel, new() =>
             Replace<TReplace, TReplacement>(starter, new TReplacement());
         
         /// <summary>
-        /// 
+        /// Replace all GameModel implementations of a certain base type with a specified one.
         /// </summary>
-        /// <param name="starter"></param>
-        /// <param name="replacement"></param>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
+        /// <param name="replacement">Instance of a <see cref="GameModel"/> derived type to use as the replacement.</param>
         /// <typeparam name="TBaseReplace"></typeparam>
-        /// <typeparam name="TReplacement"></typeparam>
+        /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void ReplaceAll<TBaseReplace, TReplacement>(this IGameStarter starter, TReplacement replacement)
             where TBaseReplace : GameModel where TReplacement : GameModel
         {
@@ -91,21 +94,22 @@ namespace BannerLib.Gameplay.Models
         }
         
         /// <summary>
-        /// 
+        /// Replace all GameModel implementations of a certain base type with a specified one.
         /// </summary>
-        /// <param name="starter"></param>
-        /// <typeparam name="TBaseReplace"></typeparam>
-        /// <typeparam name="TReplacement"></typeparam>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
+        /// <typeparam name="TBaseReplace"><see cref="GameModel"/> base type to replace all derived types for.</typeparam>
+        /// <typeparam name="TReplacement"><see cref="GameModel"/> derived type to use as the replacement.</typeparam>
         public static void ReplaceAll<TBaseReplace, TReplacement>(this IGameStarter starter)
             where TBaseReplace : GameModel where TReplacement : GameModel, new() =>
             ReplaceAll<TBaseReplace, TReplacement>(starter, new TReplacement());
         
         /// <summary>
-        /// 
+        /// Adds a GameModel to the GameStarter
+        /// - This CAN (but might not) cause unintended effects if you add a model that already exists.
         /// </summary>
-        /// <param name="starter"></param>
-        /// <param name="add"></param>
-        /// <typeparam name="TGameModel"></typeparam>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
+        /// <param name="add">Instance of the <see cref="GameModel"/> derived type to add.</param>
+        /// <typeparam name="TGameModel"><see cref="GameModel"/> derived type to add.</typeparam>
         public static void Add<TGameModel>(this IGameStarter starter, TGameModel add)
             where TGameModel : GameModel
         {
@@ -114,10 +118,11 @@ namespace BannerLib.Gameplay.Models
         }
 
         /// <summary>
-        /// <inheritdoc cref="Add{TGameModel}(TaleWorlds.Core.IGameStarter,TGameModel)"/>
+        /// Adds a GameModel to the GameStarter
+        /// - This CAN (but might not) cause unintended effects if you add a model that already exists.
         /// </summary>
-        /// <param name="starter"></param>
-        /// <typeparam name="TGameModel"></typeparam>
+        /// <param name="starter"><see cref="IGameStarter"/> Object.</param>
+        /// <typeparam name="TGameModel"><see cref="GameModel"/> derived type to add.</typeparam>
         public static void Add<TGameModel>(this IGameStarter starter) 
             where TGameModel : GameModel, new() =>
             Add(starter, new TGameModel());

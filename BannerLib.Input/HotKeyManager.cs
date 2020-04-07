@@ -83,7 +83,7 @@ namespace BannerLib.Input
         /// Adds a hotkey to he manager ready for building.
         /// </summary>
         /// <typeparam name="T">The <see cref="HotKeyBase"/> derived type to add.</typeparam>
-        /// <returns>A new instance of <seealso cref="T"/></returns>
+        /// <returns>A new instance of <seealso cref="HotKeyBase"/></returns>
         public T Add<T>() where T : HotKeyBase, new() => Add(new T());
         
         /// <summary>
