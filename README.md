@@ -12,7 +12,7 @@ All you have to do is reference the assemblies you need (They should hopefully a
 
 ### Available Namespaces:
 
-
+Here are the available base namespaces in the BannerLib project - (each of them being a separate DLL) - The links will take you to further documentation.
 
 - [BannerLib.Gameplay](BannerLib.Gameplay) - Wraps various common gameplay features to make adding/removing/changing gameplay behaviour simpler.
 - [BannerLib.Input](BannerLib.Input) - Simplifies and improves the input system and prevents mod collisions when multiple mods are registering hotkeys.

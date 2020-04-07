@@ -1,4 +1,4 @@
-# Perks
+# BannerLib.Gameplay.Perks
 
 Allows easily adding perks to a game with their existence and state being saved automatically as part of the save system, running the code on a game which has already had these perks saved will simply load them back up instead of registering them _"as new"_.
 
