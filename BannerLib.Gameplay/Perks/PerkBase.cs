@@ -13,12 +13,12 @@ namespace BannerLib.Gameplay.Perks
         /// <summary>
         /// Display name of the perk.
         /// </summary>
-        public string Name { get; internal set; }
+        public string Name { get; protected set; }
         
         /// <summary>
         /// Description of the perk as seen in the character screen.
         /// </summary>
-        public string Description { get; internal set; }
+        public string Description { get; protected set; }
         
         /// <summary>
         /// The primary bonus value. If <see cref="EffectType"/> is set to AddFactor, this number should be expressed as a percentage.
