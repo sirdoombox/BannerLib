@@ -55,7 +55,8 @@ namespace BannerLib.Gameplay.Models
                 throw new Exception($"{replaceType.Name} must derive from something.");
             if(replacementType.BaseType is null) 
                 throw new Exception($"{replacementType.Name} must derive from something.");
-            if(!replaceType.BaseType.IsAssignableFrom(replacementType))
+            if(!replaceType.BaseType.IsAssignableFrom(replacementType) &&
+               !(replacementType.BaseType != replaceType))
                 throw new Exception($"{replaceType.Name} is not derived from {replacementType.BaseType.Name}");
             var model = starter.Models.FirstOrDefault(x => x is TReplace);
             if (model is null) return;;
