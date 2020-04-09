@@ -1,3 +1,4 @@
+using BannerLib.Gameplay.Internal;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 

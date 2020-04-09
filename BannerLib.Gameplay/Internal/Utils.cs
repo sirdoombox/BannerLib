@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace BannerLib.Gameplay
+namespace BannerLib.Gameplay.Internal
 {
     internal static class Utils
     {
         internal static object Call(this object o, string methodName, params object[] args)
         {
             var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (mi != null)
+            if (mi == null) return null;
+            try
             {
-                try
-                {
-                    return mi.Invoke(o, args);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
+                return mi.Invoke(o, args);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
             }
             return null;
         }
