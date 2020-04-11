@@ -29,8 +29,9 @@ This information is only for people building the project from source.
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 <PropertyGroup>
-	<GameBins>Path to the main bin/Win64_Shipping_Client folder</GameBins>
-	<BuildPath>Path to the desired build folder</BuildPath>
+	<GameBins>Path to the main bin/Win64_Shipping_Client folder.</GameBins>
+	<BuildPath>Path to the desired build folder.</BuildPath>
+    <ModuleDir>Path to the modules folder.</ModuleDir>
 </PropertyGroup>
 </Project>
 ```
@@ -43,6 +44,7 @@ Example:
 <PropertyGroup>
 	<GameBins>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\</GameBins>
 	<BuildPath>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BannerLib\bin\Win64_Shipping_Client\</BuildPath>
+    <ModuleDir>G:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\</ModuleDir>
 </PropertyGroup>
 </Project>
 ```

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.ReleasePackager",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.Core", "BannerLib.Core\BannerLib.Core.csproj", "{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannerLib.UI", "BannerLib.UI\BannerLib.UI.csproj", "{FB24524E-E914-4B38-AD30-DC7A56C30061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{5DB40B1D-2A9C-4C70-9D04-5E134E9C2777}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76ADCE1B-D7A5-4CCB-BA2C-F11F012A1740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76ADCE1B-D7A5-4CCB-BA2C-F11F012A1740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB24524E-E914-4B38-AD30-DC7A56C30061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB24524E-E914-4B38-AD30-DC7A56C30061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB24524E-E914-4B38-AD30-DC7A56C30061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB24524E-E914-4B38-AD30-DC7A56C30061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

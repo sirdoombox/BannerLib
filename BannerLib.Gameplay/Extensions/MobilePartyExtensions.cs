@@ -3,7 +3,9 @@ using TaleWorlds.CampaignSystem;
 
 namespace BannerLib.Gameplay.Extensions
 {
+#pragma warning disable 1591
     public static class MobilePartyExtensions
+#pragma warning restore 1591
     {
         private const string c_SPEED_CHECK_VERSION_FIELD = "_partyPureSpeedLastCheckVersion";
         private const int c_SPEED_CHECK_VALUE = -1;
