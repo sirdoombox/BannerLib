@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+using BannerLib.UI.Internal;
 using SandBox.GauntletUI.Map;
+using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TaleWorlds.MountAndBlade.View.Missions;
 using TaleWorlds.MountAndBlade.ViewModelCollection;
 
@@ -22,9 +22,7 @@ namespace BannerLib.UI.Map
 
         protected override void CreateLayout()
         {
-            var menuItems = (List<EscapeMenuItemVM>)typeof(GauntletMapEscapeMenu)
-                .GetField("_menuItems", BindingFlags.Instance | BindingFlags.NonPublic)
-                .GetValue(this);
+            var menuItems =  this.GetNonPublicFieldValue<List<EscapeMenuItemVM>>("_menuItems", true);
             foreach (var (order, escapeMenuItem) in m_addItems)
             {
                 if(order == -1)
@@ -34,12 +32,10 @@ namespace BannerLib.UI.Map
             }
             base.CreateLayout();
             // TIDY: This is a mess made primarily of magic.
-            var menuMovie = (GauntletMovie) typeof(GauntletMapEscapeMenu)
-                .GetField("_escapeMenuMovie", BindingFlags.Instance | BindingFlags.NonPublic)
-                ?.GetValue(this);
+            var menuMovie = this.GetNonPublicFieldValue<GauntletMovie>("_escapeMenuMovie", true);
             if (menuMovie == null) return;
             var listPanelParent = menuMovie.RootView.Target.Children[0];
-            listPanelParent.SuggestedWidth = 600; // here
+            listPanelParent.SuggestedHeight = 800; // here
             var menuButtonsListPanel = listPanelParent.Children[0];
             menuButtonsListPanel.MarginBottom = 0;
             menuButtonsListPanel.MarginTop = 0;
@@ -73,9 +69,9 @@ namespace BannerLib.UI.Map
             scrollBar.WidthSizePolicy = SizePolicy.Fixed;
             scrollBar.HeightSizePolicy = SizePolicy.StretchToParent;
             scrollBar.HorizontalAlignment = HorizontalAlignment.Right;
-            scrollBar.MarginRight = 137.5f; // here
-            scrollBar.MarginBottom = 100; // here
-            scrollBar.MarginTop = 100; // here
+            scrollBar.MarginRight = 123f;
+            scrollBar.MarginBottom = 100;
+            scrollBar.MarginTop = 100;
             scrollBar.AlignmentAxis = AlignmentAxis.Vertical;
             scrollBar.MinValue = 0;
             scrollBar.MaxValue = 100;

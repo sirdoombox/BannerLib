@@ -1,8 +1,5 @@
-using System.Linq;
 using BannerLib.UI.Map;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection;
@@ -15,10 +12,10 @@ namespace BannerLib.UI
     {
         public override void OnGameInitializationFinished(Game game)
         {
-            MapEscapeMenu.Insert(0, new EscapeMenuItemVM(new TextObject("Test Menu Button Insert"), o => {}, null, false));
-            MapEscapeMenu.Add(new EscapeMenuItemVM(new TextObject("Test Menu Button 1"), o => {}, null, false));
-            MapEscapeMenu.Add(new EscapeMenuItemVM(new TextObject("Test Menu Button 2"), o => {}, null, false));
-            MapEscapeMenu.Add(new EscapeMenuItemVM(new TextObject("Test Menu Button 3"), o => {}, null, false));
+            // Just testing this out...
+            MapEscapeMenu.Add(new EscapeMenuItemVM(new TextObject("Test 1"), _ => { }, null, false));
+            MapEscapeMenu.Add(new EscapeMenuItemVM(new TextObject("Test 2"), _ => { }, null, false));
+            MapEscapeMenu.Insert(0, new EscapeMenuItemVM(new TextObject("Test Insert Top"), _ => { }, null, false));
         }
     }
 }
