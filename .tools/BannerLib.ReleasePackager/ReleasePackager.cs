@@ -28,7 +28,14 @@ namespace BannerLib.ReleasePackager
         
         private const string c_BIN_DIR = "bin/Release";
         private const string c_SUBMODULE_XML_FILENAME = "SubModule.xml";
-        
+
+
+        private readonly IReadOnlyList<string> m_dependedModules = new[]
+        {
+            "Native",
+            "SandBoxCore",
+            "Sandbox",
+        };
         private readonly List<string> m_subModuleProjectDirs = new List<string>();
 
         private void Run()
@@ -76,7 +83,10 @@ namespace BannerLib.ReleasePackager
                 WriteClosedElementWithAttribute(writer, "Version", c_RELEASE_VER);
                 WriteClosedElementWithAttribute(writer, "SingleplayerModule", true.ToString().ToLower());
                 WriteClosedElementWithAttribute(writer, "MultiplayerModule", (!c_IS_SINGLEPLAYER_ONLY).ToString().ToLower());
-                WriteClosedElement(writer, "DependedModules");
+                writer.WriteStartElement("DependedModules");
+                foreach(var dependency in m_dependedModules)
+                    WriteClosedElementWithAttribute(writer, "DependedModule", dependency, "Id");
+                writer.WriteEndElement();
                 writer.WriteStartElement("SubModules");
             foreach (var subModDir in m_subModuleProjectDirs)
             {
@@ -109,10 +119,10 @@ namespace BannerLib.ReleasePackager
             writer.WriteEndElement();
         }
         
-        private void WriteClosedElementWithAttribute(XmlWriter writer, string elementName, string value)
+        private void WriteClosedElementWithAttribute(XmlWriter writer, string elementName, string value, string attributeName = "value")
         {
             writer.WriteStartElement(elementName);
-            writer.WriteAttributeString("value", value);
+            writer.WriteAttributeString(attributeName, value);
             writer.WriteEndElement();
         }
 
