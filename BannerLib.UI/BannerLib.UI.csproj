@@ -1,234 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\paths.csproj" />
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{FB24524E-E914-4B38-AD30-DC7A56C30061}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>BannerLib.UI</RootNamespace>
         <AssemblyName>BannerLib.UI</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>x64</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>embedded</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>$(BuildPath)</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <DocumentationFile>$(BuildPath)BannerLib.UI.xml</DocumentationFile>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <TargetFramework>net4.7.2</TargetFramework>
         <PlatformTarget>x64</PlatformTarget>
         <DebugType>embedded</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <DocumentationFile>bin\Release\BannerLib.UI.xml</DocumentationFile>
-    </PropertyGroup>
-    <PropertyGroup>
         <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Numerics" />
-        <Reference Include="System.Xml.Linq" />
-        <Reference Include="System.Data.DataSetExtensions" />
-        <Reference Include="Microsoft.CSharp" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Net.Http" />
-        <Reference Include="System.Xml" />
-        <Reference Include="SandBox.GauntletUI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(ModuleDir)SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="SandBox.View, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(ModuleDir)SandBox\bin\Win64_Shipping_Client\SandBox.View.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.View, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(ModuleDir)Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.CampaignSystem">
-            <HintPath>$(GameBins)TaleWorlds.CampaignSystem.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection">
-            <HintPath>$(GameBins)TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Core">
-            <HintPath>$(GameBins)TaleWorlds.Core.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Core.ViewModelCollection">
-            <HintPath>$(GameBins)TaleWorlds.Core.ViewModelCollection.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Diamond">
-            <HintPath>$(GameBins)TaleWorlds.Diamond.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Diamond.AccessProvider.Epic">
-            <HintPath>$(GameBins)TaleWorlds.Diamond.AccessProvider.Epic.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Diamond.AccessProvider.Steam">
-            <HintPath>$(GameBins)TaleWorlds.Diamond.AccessProvider.Steam.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Diamond.AccessProvider.Test">
-            <HintPath>$(GameBins)TaleWorlds.Diamond.AccessProvider.Test.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.DotNet">
-            <HintPath>$(GameBins)TaleWorlds.DotNet.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.DotNet.AutoGenerated">
-            <HintPath>$(GameBins)TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Engine">
-            <HintPath>$(GameBins)TaleWorlds.Engine.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Engine.AutoGenerated">
-            <HintPath>$(GameBins)TaleWorlds.Engine.AutoGenerated.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Engine.GauntletUI">
-            <HintPath>$(GameBins)TaleWorlds.Engine.GauntletUI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.GauntletUI">
-            <HintPath>$(GameBins)TaleWorlds.GauntletUI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.GauntletUI.Data">
-            <HintPath>$(GameBins)TaleWorlds.GauntletUI.Data.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.GauntletUI.ExtraWidgets">
-            <HintPath>$(GameBins)TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.GauntletUI.PrefabSystem">
-            <HintPath>$(GameBins)TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.GauntletUI.TooltipExtensions">
-            <HintPath>$(GameBins)TaleWorlds.GauntletUI.TooltipExtensions.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.InputSystem">
-            <HintPath>$(GameBins)TaleWorlds.InputSystem.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Library">
-            <HintPath>$(GameBins)TaleWorlds.Library.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Localization">
-            <HintPath>$(GameBins)TaleWorlds.Localization.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.AutoGenerated">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.Diamond">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.Helpers">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection">
-            <HintPath>$(GameBins)TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.NavigationSystem">
-            <HintPath>$(GameBins)TaleWorlds.NavigationSystem.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Network">
-            <HintPath>$(GameBins)TaleWorlds.Network.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.PlatformService">
-            <HintPath>$(GameBins)TaleWorlds.PlatformService.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.PlatformService.Epic">
-            <HintPath>$(GameBins)TaleWorlds.PlatformService.Epic.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.PlatformService.Steam">
-            <HintPath>$(GameBins)TaleWorlds.PlatformService.Steam.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.PlayerServices">
-            <HintPath>$(GameBins)TaleWorlds.PlayerServices.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.PSAI">
-            <HintPath>$(GameBins)TaleWorlds.PSAI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.SaveSystem">
-            <HintPath>$(GameBins)TaleWorlds.SaveSystem.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Starter.DotNetCore">
-            <HintPath>$(GameBins)TaleWorlds.Starter.DotNetCore.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.Starter.Library">
-            <HintPath>$(GameBins)TaleWorlds.Starter.Library.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.TwoDimension">
-            <HintPath>$(GameBins)TaleWorlds.TwoDimension.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="TaleWorlds.TwoDimension.Standalone">
-            <HintPath>$(GameBins)TaleWorlds.TwoDimension.Standalone.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Internal\ReflectionExtensions.cs" />
-        <Compile Include="Map\MapEscapeMenu.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="UISubModule.cs" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>$(BuildPath)</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="$(GameBins)TaleWorlds.*.dll">
+            <HintPath>%(Identity)</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="$(ModuleDir)SandBox\bin\Win64_Shipping_Client\SandBox.*.dll">
+            <HintPath>%(Identity)</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="$(ModuleDir)Native\bin\Win64_Shipping_Client\TaleWorlds.*.dll">
+            <HintPath>%(Identity)</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
 </Project>
