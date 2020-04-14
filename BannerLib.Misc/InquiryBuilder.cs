@@ -4,7 +4,7 @@ using TaleWorlds.Core;
 namespace BannerLib.Misc
 {
     /// <summary>
-    /// 
+    /// Used to build <see cref="InquiryData"/> for <see cref="InformationManager.ShowInquiry"/>
     /// </summary>
     public class InquiryBuilder
     {
@@ -46,28 +46,28 @@ namespace BannerLib.Misc
         /// <summary>
         /// While every Inquiry has an Affirmative, this allows you to set what happens when it is clicked and what the text on the button is.
         /// </summary>
-        /// <param name="onAffirmative">Callback called when the player clicks the affirmative button.</param>
         /// <param name="affirmativeText">The text displayed on the affirmative button.</param>
+        /// <param name="onAffirmative">Callback called when the player clicks the affirmative button.</param>
         /// <returns>This <see cref="InquiryBuilder"/> for chaining method calls.</returns>
-        public InquiryBuilder WithAffirmative(Action onAffirmative, string affirmativeText = "")
+        public InquiryBuilder WithAffirmative(string affirmativeText = "", Action onAffirmative = null)
         {
             if (!string.IsNullOrWhiteSpace(affirmativeText)) m_affirmativeText = affirmativeText;
             m_affirmativeAction = onAffirmative ?? 
-                                  throw new ArgumentException("Action should not be null.", nameof(onAffirmative));
+                                  (() => { });
             return this;
         }
         
         /// <summary>
         /// Adds a negative button to the inquiry.
         /// </summary>
-        /// <param name="onNegative">Callback called when the player clicks the negative button.</param>
         /// <param name="negativeText">The text displayed on the negative button.</param>
+        /// <param name="onNegative">Callback called when the player clicks the negative button.</param>
         /// <returns>This <see cref="InquiryBuilder"/> for chaining method calls.</returns>
-        public InquiryBuilder WithNegative(Action onNegative, string negativeText = "")
+        public InquiryBuilder WithNegative(string negativeText = "", Action onNegative = null)
         {
             if (!string.IsNullOrWhiteSpace(negativeText)) m_negativeText = negativeText;
             m_negativeAction = onNegative ?? 
-                               throw new ArgumentException("Action should not be null.", nameof(onNegative));
+                               (() => { });
             m_withNegative = true;
             return this;
         }
