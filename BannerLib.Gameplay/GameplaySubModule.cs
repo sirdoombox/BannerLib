@@ -1,3 +1,5 @@
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.MountAndBlade;
 
 #pragma warning disable 1591
