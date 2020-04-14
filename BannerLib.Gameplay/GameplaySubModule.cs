@@ -1,4 +1,5 @@
 using TaleWorlds.MountAndBlade;
+
 #pragma warning disable 1591
 
 namespace BannerLib.Gameplay
