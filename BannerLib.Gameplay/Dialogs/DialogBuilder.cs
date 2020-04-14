@@ -369,6 +369,11 @@ namespace BannerLib.Gameplay.Dialogs.DialogBuilder
 			{
 				return new PlayerDialogToken(Builder, this, tokenName);
 			}
+			public IPlayerDialogToken SetOutputAndEnd(string outputToken)
+			{
+				OutputToken = outputToken;
+				return End();
+			}
 			public IPartnerDialogToken SetExpressions(Expressions expressions)
 			{
 				Expressions = expressions;
@@ -417,6 +422,11 @@ namespace BannerLib.Gameplay.Dialogs.DialogBuilder
 				var result = new PartnerDialogToken(Builder, this, tokenName);
 				OutputToken = result.TokenName;
 				return result;
+			}
+			public IPartnerDialogToken SetOutputAndEnd(string outputToken)
+			{
+				OutputToken = outputToken;
+				return End();
 			}
 			public IBarterResultToken Barter(AcquireBarterablesCallback acquireBarterables)
 			{
@@ -704,6 +714,12 @@ namespace BannerLib.Gameplay.Dialogs.DialogBuilder
 		/// <returns>Newly created <see cref="IPartnerDialogToken"/></returns>
 		[PublicAPI] [NotNull] IPartnerDialogToken Response([NotNull]string tokenName);
 		/// <summary>
+		/// Sets custom output token to current token and finish this token, returning to it's input <see cref="IPartnerDialogToken"/> or null.
+		/// </summary>
+		/// <param name="outputToken">Output token name, which should be set to this token</param>
+		/// <returns><see cref="IPartnerDialogToken"/> instance by which this <see cref="IPlayerDialogToken"/> was created or null if input token has other type.</returns>
+		[PublicAPI] [CanBeNull] IPartnerDialogToken SetOutputAndEnd([NotNull]string outputToken);
+		/// <summary>
 		/// Finishes this token and returns it's input <see cref="IPartnerDialogToken"/> or null.
 		/// </summary>
 		/// <returns><see cref="IPartnerDialogToken"/> instance by which this <see cref="IPlayerDialogToken"/> was created or null if input token has other type.</returns>
@@ -802,6 +818,12 @@ namespace BannerLib.Gameplay.Dialogs.DialogBuilder
 		/// <param name="tokenName"></param>
 		/// <returns>Newly created <see cref="IPlayerDialogToken"/></returns>
 		[PublicAPI] [NotNull] IPlayerDialogToken Response([NotNull]string tokenName);
+		/// <summary>
+		/// Sets custom output token to current token and finish this token, returning to it's input <see cref="IPlayerDialogToken"/> or null.
+		/// </summary>
+		/// <param name="outputToken">Output token name, which should be set to this token</param>
+		/// <returns><see cref="IPlayerDialogToken"/> instance by which this <see cref="IPartnerDialogToken"/> was created or null if input token has other type.</returns>
+		[PublicAPI] [CanBeNull] IPlayerDialogToken SetOutputAndEnd([NotNull]string outputToken);
 		/// <summary>
 		/// Finishes this token and returns it's input <see cref="IPlayerDialogToken"/> or null.
 		/// </summary>
