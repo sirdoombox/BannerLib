@@ -163,7 +163,6 @@ namespace BannerLib.Gameplay.Dialogs
 		{
 			internal PlayerDialogToken([NotNull]DialogBuilder builder, DialogToken inputToken,
 				[NotNull]string tokenName)
-				[NotNull] string tokenName)
 				: base(builder, inputToken, tokenName)
 			{
 			}
