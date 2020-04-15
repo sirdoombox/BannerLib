@@ -46,7 +46,7 @@ namespace BannerLib.Input
             var doesModAlreadyHaveRegisteredKeys = TaleWorlds.InputSystem.HotKeyManager.GetAllCategories()
                 .Any(x => string.Equals(x.GameKeyCategoryId, modName, StringComparison.OrdinalIgnoreCase));
             if (doesModAlreadyHaveRegisteredKeys)
-                throw new ArgumentException("Mod With This Name Already Exists.", nameof(modName));
+                throw new ArgumentException("Hotkeys For Mod With This Name Already Exists.", nameof(modName));
             var idMax = 0;
             foreach (var category in TaleWorlds.InputSystem.HotKeyManager.GetAllCategories())
             {

@@ -17,6 +17,7 @@ Here are the available base namespaces in the BannerLib project - (each of them 
 - [BannerLib.Gameplay](BannerLib.Gameplay) - Wraps various common gameplay features to make adding/removing/changing gameplay behaviour simpler.
 - [BannerLib.Input](BannerLib.Input) - Simplifies and improves the input system and prevents mod collisions when multiple mods are registering hotkeys.
 - [BannerLib.Misc](BannerLib.Misc) - Contains miscellaneous small helpers and documented wrappers for various API features.
+- [BannerLib.UI](BannerLib.UI) - An attempt to standardise some common UI additions/changes to prevent conflicts and remove the requirement for a large number of mods to override a single ViewModel.
 
 ## Build Setup
 
