@@ -23,7 +23,7 @@ namespace BannerLib.ReleasePackager
         //     Run this project.
 
         private const string c_MODULE_NAME = "BannerLib";
-        private const string c_RELEASE_VER = "v0.0.9"; // v is required, major.minor.revision format.
+        private const string c_RELEASE_VER = "v0.1.0"; // v is required, major.minor.revision format.
         private const bool c_IS_SINGLEPLAYER_ONLY = true; // if this is false, the module can also be used in multiplayer, leave it false for now.
         
         private const string c_BIN_DIR = "bin/Release";
